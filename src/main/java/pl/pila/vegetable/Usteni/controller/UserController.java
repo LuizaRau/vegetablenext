@@ -25,6 +25,7 @@ public class UserController {
     @ResponseBody
     public String testUser(){
         Users u1 = new Users();
+        u1.setPassword("tata");
         u1.setUsername("Jan");
         u1.setLastName("Kowalski");
         u1.setLogin("jankowalski");
