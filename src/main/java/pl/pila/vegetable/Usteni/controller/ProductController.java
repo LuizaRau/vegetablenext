@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.pila.vegetable.Usteni.model.Product;
 import pl.pila.vegetable.Usteni.repository.ProductRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Controller

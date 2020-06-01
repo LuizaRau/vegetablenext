@@ -14,6 +14,7 @@ import pl.pila.vegetable.Usteni.repository.ProductRepository;
 import pl.pila.vegetable.Usteni.repository.UserRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -68,7 +69,9 @@ public class OrderController {
     @GetMapping("/formorder")
     public String formAddProductToOrder(Model model){
         Product product = productRepository.findById((long) 1).get();
+
         OrderProduct op = new OrderProduct();
+
        model.addAttribute("product",product);
         model.addAttribute("op",op);
 
@@ -81,6 +84,15 @@ public class OrderController {
     public String saveProductToOrder(@ModelAttribute OrderProduct op){
         Order order = orderRepository.findById(Long.valueOf(1)).get();
         Product product = productRepository.findById(Long.valueOf(1)).get();
+       List<OrderProduct> oplist = orderProductRepository.findOrderProductsByOrder_Id(Long.valueOf(1));
+        for (OrderProduct val:oplist
+             ) {
+            if (val.getProduct().getId()==1){
+                return "produkt jest już w zamówieniu";
+            }
+
+        }
+
         op.setProduct(product);
         op.setOrder(order);
         orderProductRepository.save(op);

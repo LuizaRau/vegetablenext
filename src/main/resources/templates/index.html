@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Strona główna</title>
+    <title>Dodawanie produktu do zamówienia</title>
 </head>
 <body>
-<h1>Startowa strona</h1>
+<h1>STRONA STARTOWA
+Użytkownik do sesji.
+</h1>
+<form action="#" th:action="@{order/add}"  method="post">
+    <label>Witaj: </label>
+    <label th:text = "${userses.getLogin()}"> </label>
+    <label th:text="${orderid}"></label>
+
+
+
+    <button type="submit">DODAJ</button>
+
+
+
+
+
+
+
+</form>
+
+
 </body>
 </html>

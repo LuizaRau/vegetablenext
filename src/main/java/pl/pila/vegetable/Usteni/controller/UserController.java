@@ -6,12 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.pila.vegetable.Usteni.model.Product;
 import pl.pila.vegetable.Usteni.model.Users;
 import pl.pila.vegetable.Usteni.repository.UserRepository;
-
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/user")
@@ -43,12 +42,16 @@ public class UserController {
         return "User" +u1.toString() + u2.toString();
     }
     @GetMapping("/listu")
-    public String listUsers(Model model){
+    public String listUsers(Model model, HttpSession ses){
         ArrayList<Users> users = new ArrayList<Users>(0);
         users = (ArrayList<Users>) userRepository.findAll();
         model.addAttribute("users",users);
-
+        Users user = (Users)ses.getAttribute("userses");
+        model.addAttribute("sesuser",user);
+        long orderId = (long)ses.getAttribute("orderid");
+        model.addAttribute("idorder",orderId);
         return "user/list";
 
     }
+
 }
