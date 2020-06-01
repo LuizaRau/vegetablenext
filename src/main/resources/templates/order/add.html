@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie produktu do zamówienia</title>
+</head>
+<body>
+<h1>Dodawanie produktu do zamówienia</h1>
+<form action="#" th:action="@{order/add}" th:object="${op}" method="post">
+    <label th:text = "${product.name}"> </label>
+    <br>
+    <label th:text = "${product.description}"> </label>
+    <br>
+    <label th:text = "${product.jm}"> </label>
+
+    <br>
+    <label>Podaj ilość zgodną z jednostką miary</label>
+    <input type="text" th:field="${op.quantity}" placeholder="Podaj ilość zgodną z jm">
+
+<button type="submit">DODAJ</button>
+
+
+
+
+
+
+
+</form>
+
+
+</body>
+</html>

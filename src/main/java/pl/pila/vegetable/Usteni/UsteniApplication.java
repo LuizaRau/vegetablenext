@@ -10,4 +10,6 @@ public class UsteniApplication {
 		SpringApplication.run(UsteniApplication.class, args);
 	}
 
+
+
 }
