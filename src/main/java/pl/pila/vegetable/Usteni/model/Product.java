@@ -23,6 +23,9 @@ public class Product {
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
     private double price;
 
+    @Column(name = "link")
+    private String imagelink;
+
 
     private String description;
 
@@ -33,7 +36,13 @@ public class Product {
     public Product() {
     }
 
+    public String getImagelink() {
+        return imagelink;
+    }
 
+    public void setImagelink(String imagelink) {
+        this.imagelink = imagelink;
+    }
 
     public Long getId() {
         return id;

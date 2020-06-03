@@ -7,21 +7,25 @@
 <body>
 <h1>Lista produktów - ADMIN</h1>
 <table>
-        <tr>
+    <tr>
+        <th> </th>
         <th>NAZWA</th>
         <th>OPIS</th>
         <th>JM</th>
         <th>CENA</th>
-        </tr>
-        <tr th:each="product: ${products}">
-            <td th:text="${product.name}">Pietruszka</td>
-            <td th:text="${product.description}">Korzeń</td>
-            <td  th:text="${product.jm}">Kg</td>
-            <td th:text="${product.price}">3.0</td>
-            <td><a th:href="@{/addtoorder/{id}(id=${product.id})}"> Dodaj </a></td>
+        <th> </th>
+    </tr>
+    <tr th:each="product: ${products}">
+        <td><img th:src="${'/images/'+ product.imagelink}" width = "120" alt="Zdjęcie"> </td>
+        <td th:text="${product.name}">Pietruszka</td>
+        <td th:text="${product.description}">Korzeń</td>
+        <td  th:text="${product.jm}">Kg</td>
+        <td th:text="${product.price}">3.0</td>
+        <td><a th:href="@{/addtoorder/{id}(id=${product.id})}"> Dodaj </a></td>
 
 
-        </tr>
+
+    </tr>
 
 
 

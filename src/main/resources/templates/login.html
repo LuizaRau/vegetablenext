@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>U Steni</title>
 </head>
 <body>
+<div class="menu">
+
+    <div class="menu-separator-v"></div>
+    <a class="menu-element" href="/register">Rejestracja</a>
+
+    <div class="menu-separator-v"></div>
+
+    <a class="menu-element" href="/login">Zaloguj się</a>
+    <div class="menu-separator-v"></div>
+</div>
+<p >U Steni >>>> Warzywa i rozsada</p>
+
 <form action="/login" method ='POST'>
-    <h1>ZALOGUJ SIĘ</h1>
+
     <br>
     Nazwa użytkownika (login):
    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
@@ -19,7 +31,7 @@
     <input name="Zaloguj" type="submit" value="submit">
 
 </form>
-
+<a href="/register">Nie masz konta??? Zarejestruj się</a>
 
 </body>
 </html>

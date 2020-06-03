@@ -8,6 +8,7 @@ import pl.pila.vegetable.Usteni.repository.ProductRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/product/")
@@ -48,8 +49,8 @@ public class ProductController {
 
     @GetMapping("/listp")
     public String listProducts(Model model){
+        Iterable<Product> products= productRepository.findAll();
 
-       List<Product> products = (List<Product>) productRepository.findAll();
         model.addAttribute("products",products);
 
         return "products/list";

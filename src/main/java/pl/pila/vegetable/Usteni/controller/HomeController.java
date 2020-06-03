@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.pila.vegetable.Usteni.model.Order;
+import pl.pila.vegetable.Usteni.model.Product;
 import pl.pila.vegetable.Usteni.model.Users;
 import pl.pila.vegetable.Usteni.repository.OrderProductRepository;
 import pl.pila.vegetable.Usteni.repository.OrderRepository;
@@ -59,9 +60,14 @@ public class HomeController {
         return "user_panel";
     }
 
-    @RequestMapping({"/user_panel"})
-    public String duda(){
+    @RequestMapping("/user_panel")
+    public String listProducts(Model model){
+        Iterable<Product> products= productRepository.findAll();
+
+        model.addAttribute("products",products);
+
         return "user_panel";
+
     }
 
 
@@ -105,13 +111,16 @@ public class HomeController {
     }
     @GetMapping({"/",""})
     public String indexPage(Model model){
+        Iterable<Product> products= productRepository.findAll();
+        model.addAttribute("products",products);
 
 
         return "index";
 
     }
-    @GetMapping("/logout")
+    @GetMapping("/logo")
     public String logoutPage(Model model){
+
 
 
         return "index";

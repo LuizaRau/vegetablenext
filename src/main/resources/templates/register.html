@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
     <meta charset="UTF-8">
-    <title>Rejestracja użytkownika</title>
+    <title>U Steni</title>
 </head>
 <body>
+<div class="menu">
+
+    <div class="menu-separator-v"></div>
+    <a class="menu-element" href="/register">Rejestracja</a>
+
+    <div class="menu-separator-v"></div>
+
+    <a class="menu-element" href="/login">Zaloguj się</a>
+    <div class="menu-separator-v"></div>
+</div>
+<p >U Steni >>>> Warzywa i rozsada</p>
+
 <h1>Rejestracja użytkownika</h1>
 <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <input type="text" th:field="*{username}" placeholder="Utwórz login">

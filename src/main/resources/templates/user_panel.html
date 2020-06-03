@@ -7,6 +7,33 @@
 </head>
 <body>
 <div th:insert="menu.html:: div"></div>
-<h1>User panel</h1>
+<p >U Steni >>>> Warzywa i rozsada</p>
+
+<p>Nasza oferta </p>
+
+
+<p>Zamów produkty</p>
+<table>
+    <tr>
+        <th> </th>
+        <th>NAZWA</th>
+        <th>OPIS</th>
+        <th>JM</th>
+        <th>CENA</th>
+        <th> </th>
+    </tr>
+    <tr th:each="product: ${products}">
+        <td><img alt="Zdjęcie" th:src="${'/images/'+ product.imagelink}" width="120"> </td>
+        <td th:text="${product.name}">Pietruszka</td>
+        <td th:text="${product.description}">Korzeń</td>
+        <td  th:text="${product.jm}">Kg</td>
+        <td th:text="${product.price}">3.0</td>
+        <td><a th:href="@{/addtoorder/{id}(id=${product.id})}"> Dodaj </a></td>
+
+
+
+    </tr>
+
+</table>
 </body>
 </html>
