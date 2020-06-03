@@ -26,14 +26,12 @@ public class UserController {
         Users u1 = new Users();
         u1.setPassword("tata");
         u1.setUsername("Jan");
-        u1.setLastName("Kowalski");
-        u1.setLogin("jankowalski");
+
         u1.setEmail("jan@kowalski.pl");
         u1.setPassword("janek1");
         Users u2 = new Users();
         u2.setUsername("Zbyszek");
-        u2.setLastName("Nowak");
-        u2.setLogin("zbigniewnowak");
+
         u2.setEmail("zbigniew@nowak.pl");
         u2.setPassword("zbyszek1");
         userRepository.save(u1);
