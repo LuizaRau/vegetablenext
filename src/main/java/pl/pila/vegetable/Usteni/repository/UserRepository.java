@@ -5,6 +5,6 @@ import pl.pila.vegetable.Usteni.model.Users;
 
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<Users, Long> {
+public interface UserRepository extends CrudRepository<Users, Integer> {
     Optional<Users> findByUsername(String username);
 }

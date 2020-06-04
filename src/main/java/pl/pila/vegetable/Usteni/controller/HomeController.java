@@ -14,11 +14,13 @@ import pl.pila.vegetable.Usteni.repository.UserRepository;
 import pl.pila.vegetable.Usteni.services.SignUpService;
 
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
-//@SessionAttributes({"userses", "orderid"})
+@SessionAttributes({"sesuserid", "orderid"})
 public class HomeController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
@@ -40,8 +42,8 @@ public class HomeController {
     @GetMapping({"/nic","/ddd"})
 
     public String home(Model model){
-        long orderid = 0;
-        Users user = userRepository.findById(Long.valueOf(1)).get();
+        Integer orderid = 0;
+        Users user = userRepository.findById(1).get();
         model.addAttribute("userses",user);
         List<Order> orders = (List<Order>) orderRepository.findAll();
 
@@ -61,10 +63,18 @@ public class HomeController {
     }
 
     @RequestMapping("/user_panel")
-    public String listProducts(Model model){
-        Iterable<Product> products= productRepository.findAll();
+    public String listProducts(Model model,Principal principal){
 
+        Iterable<Product> products= productRepository.findAll();
         model.addAttribute("products",products);
+
+        Optional<Users> usersOptional = userRepository.findByUsername(principal.getName());
+        if (!usersOptional.isPresent()){
+            throw new NullPointerException("nie ma użytkownika");
+        }
+        Users user = usersOptional.get();
+        Integer userId = user.getId();
+        model.addAttribute("sesuserid",userId);
 
         return "user_panel";
 
@@ -125,6 +135,17 @@ public class HomeController {
 
         return "index";
 
+    }
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Principal principal) {
+
+        Optional<Users> usersOptional = userRepository.findByUsername(principal.getName());
+        if (!usersOptional.isPresent()){
+            throw new NullPointerException("nie ma użytkownika");
+        }
+        Users user = usersOptional.get();
+        return " " + user.toString();
     }
 
 }

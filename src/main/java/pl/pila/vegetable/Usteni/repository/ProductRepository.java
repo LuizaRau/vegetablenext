@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import pl.pila.vegetable.Usteni.model.Product;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product,Long> {
+public interface ProductRepository extends CrudRepository<Product,Integer> {
 
 }

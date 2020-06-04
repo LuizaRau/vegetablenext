@@ -10,6 +10,7 @@
 <p >U Steni >>>> Warzywa i rozsada</p>
 
 <p>Nasza oferta </p>
+<p th:text="${session.sesuserid}"> </p>
 
 
 <p>Zamów produkty</p>
@@ -28,7 +29,7 @@
         <td th:text="${product.description}">Korzeń</td>
         <td  th:text="${product.jm}">Kg</td>
         <td th:text="${product.price}">3.0</td>
-        <td><a th:href="@{/addtoorder/{id}(id=${product.id})}"> Dodaj </a></td>
+        <td><a th:href="@{/orderadd/{id}(id=${product.id})}"> Dodaj </a></td>
 
 
 

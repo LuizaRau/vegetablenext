@@ -1,5 +1,7 @@
 <div class="menu" xmlns:sec="http://www.w3.org/1999/xhtml" >
 
+    <div sec:authorize="isAuthenticated()">
+        Jesteś zalogowany jako: <span sec:authentication="name"></span></div>
     <div class="menu-separator-v"></div>
     <a class="menu-element" href="/user_panel">User panel</a>
     <div sec:authorize="hasAuthority('ADMIN')" class="menu-separator-v"></div>

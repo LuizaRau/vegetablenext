@@ -46,7 +46,7 @@ public class UserController {
         model.addAttribute("users",users);
         Users user = (Users)ses.getAttribute("userses");
         model.addAttribute("sesuser",user);
-        long orderId = (long)ses.getAttribute("orderid");
+        Integer orderId = (Integer) ses.getAttribute("orderid");
         model.addAttribute("idorder",orderId);
         return "user/list";
 

@@ -1,6 +1,8 @@
 package pl.pila.vegetable.Usteni.model;
 
 
+import com.sun.istack.NotNull;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,14 +21,15 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true,nullable = false)
-    private long id;
+    private Integer id;
+    @NotNull
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
     private String fullName;
 
     private String email;
-
+    @NotNull
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
@@ -81,11 +84,11 @@ public class Users implements UserDetails {
         return true;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -148,5 +151,17 @@ public class Users implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+
+                '}';
     }
 }

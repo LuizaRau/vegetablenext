@@ -4,8 +4,7 @@ package pl.pila.vegetable.Usteni.model;
 import javax.persistence.*;
 
 
-import java.util.HashSet;
-import java.util.Set;
+
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    private int id;
 
     @Column(name = "name", nullable = false, length = 250)
     private String name;
@@ -44,11 +43,11 @@ public class Product {
         this.imagelink = imagelink;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

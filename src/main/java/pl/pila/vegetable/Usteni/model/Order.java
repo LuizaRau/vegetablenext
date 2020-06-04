@@ -2,15 +2,13 @@ package pl.pila.vegetable.Usteni.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     private Date createDate;
 
@@ -23,12 +21,11 @@ public class Order {
     public Order() {
     }
 
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,14 +43,5 @@ public class Order {
 
     public void setUser(Users user) {
         this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", createDate=" + createDate +
-                ", user=" + user +
-                '}';
     }
 }

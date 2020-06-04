@@ -10,6 +10,6 @@ import java.util.Set;
 
 public interface OrderProductRepository extends CrudRepository<OrderProduct, Integer> {
 
-    List<OrderProduct> findOrderProductsByOrder_Id(long id);
+    List<OrderProduct> findOrderProductsByOrder_Id(Integer id);
 
 }

@@ -5,7 +5,7 @@ import pl.pila.vegetable.Usteni.model.Order;
 
 import java.util.List;
 
-public interface OrderRepository extends CrudRepository<Order, Long> {
+public interface OrderRepository extends CrudRepository<Order, Integer> {
 
 
 }

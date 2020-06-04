@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User panel</title>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html:: div"></div>
+<p >U Steni >>>> Warzywa i rozsada</p>
+
+<p>produkt  jest już w zamówieniu </p>
+<jeśli chcesz możesz dodać
+<p th:text="${session.sesuserid}"> </p>
+
+
+
+</table>
+</body>
+</html>

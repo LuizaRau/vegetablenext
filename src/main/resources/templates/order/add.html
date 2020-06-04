@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Dodawanie produktu do zamówienia</h1>
-<form action="#" th:action="@{order/add}" th:object="${op}" method="post">
+<form action="#" th:action="@{/orderadd}" th:object="${op}" method="post">
     <label th:text = "${product.name}"> </label>
     <br>
     <label th:text = "${product.description}"> </label>
@@ -17,6 +17,7 @@
     <label>Podaj ilość zgodną z jednostką miary</label>
     <input type="text" th:field="${op.quantity}" placeholder="Podaj ilość zgodną z jm">
 
+    <input type="hidden" th:field="${product.id}">
 <button type="submit">DODAJ</button>
 
 

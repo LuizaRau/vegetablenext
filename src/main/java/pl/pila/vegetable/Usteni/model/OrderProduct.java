@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     private double quantity;
 
     @ManyToOne
@@ -21,11 +21,11 @@ public class OrderProduct {
     public OrderProduct() {
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
