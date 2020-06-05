@@ -1,8 +1,6 @@
 package pl.pila.vegetable.Usteni.controller;
 
-import lombok.val;
-import org.springframework.data.relational.core.sql.In;
-import org.springframework.security.core.parameters.P;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +14,7 @@ import pl.pila.vegetable.Usteni.repository.ProductRepository;
 import pl.pila.vegetable.Usteni.repository.UserRepository;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,10 +80,12 @@ public class OrderController {
     }
 
     @PostMapping("/orderadd")
-        public String saveProductToOrder(@ModelAttribute OrderProduct op,@ModelAttribute Product product, Model model){
-        Order order = orderRepository.findById(1).get();
+        public String saveProductToOrder(@ModelAttribute OrderProduct op,@ModelAttribute Product product, Model model,
+                                        HttpSession ses){
 
-        List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(1);
+        Order order = new Order();
+        Integer orderId = (Integer) ses.getAttribute("orderid");
+        List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(orderId);
 
         Product p = productRepository.findById(product.getId()).get();
 
@@ -109,12 +110,15 @@ public class OrderController {
 
         double sum = op.getQuantity()*p.getPrice();
         op.setSum(sum);
+        order.setId(orderId);
         op.setProduct(product);
         op.setOrder(order);
         orderProductRepository.save(op);
 
         return "redirect:/user_panel";
     }
+
+
     @GetMapping("/orderadd1/{id}")
     public String formAddProductToOrder1(Model model, @PathVariable Integer id){
         Product product;
@@ -126,10 +130,10 @@ public class OrderController {
         return "/order/add1";
 
     }
-    @GetMapping("/cart")
-    public String showCart(Model model){
+    @GetMapping("/cart/{id}")
+    public String showCart(Model model,@PathVariable Integer id){
         double total = 0.0;
-        List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(1);
+        List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(id);
         model.addAttribute("cartA",opList);
         for (OrderProduct val:opList
         ) {
@@ -142,6 +146,20 @@ public class OrderController {
 
         return "cart";
     }
+    @GetMapping("/saveorder/{id}")
+    public String saveOrder(@PathVariable Integer id,HttpSession ses){
+        System.out.println(id);
+        Optional<Users> user = userRepository.findById(id);
+        Users u = user.get();
+        Order order = new Order();
+        order.setUser(u);
+        orderRepository.save(order);
+
+
+
+        return "redirect:/start_panel";
+    }
+
 
 
 

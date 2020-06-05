@@ -1,9 +1,7 @@
 package pl.pila.vegetable.Usteni.model;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
@@ -12,7 +10,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date createDate;
+    private LocalDateTime createDate = LocalDateTime.now();
+
 
     @ManyToOne
     private Users user;
@@ -23,19 +22,19 @@ public class Order {
     public Order() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 

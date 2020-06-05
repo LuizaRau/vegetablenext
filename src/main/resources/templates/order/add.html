@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
     <meta charset="UTF-8">
-    <title>Dodawanie produktu do zamówienia</title>
+    <title>U Steni</title>
 </head>
 <body>
+<div th:insert="menu.html:: div"></div>
+<p >U Steni >>>> Warzywa i rozsada</p>
+<p th:text="${session.orderid}"></p>
 <h1>Dodawanie produktu do zamówienia</h1>
 
+
+
 <form action="#" th:action="@{/orderadd}" th:object="${op}" method="post">
+
 
 
     <br>

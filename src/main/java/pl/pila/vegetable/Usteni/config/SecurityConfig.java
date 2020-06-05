@@ -17,7 +17,7 @@ import pl.pila.vegetable.Usteni.services.JpaUserDetailsService;
 
 
 @Configuration
-@EnableWebSecurity(debug=true)
+@EnableWebSecurity(debug=false)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 JpaUserDetailsService userDetailsService;
@@ -49,13 +49,16 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception{
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/product/**").hasAuthority("USER")
+                .antMatchers("/order/**").hasAuthority("USER")
+                .antMatchers("/cart/**").hasAuthority("USER")
+                .antMatchers("/start_panel").hasAuthority("USER")
                 .antMatchers("/user_panel").hasAuthority("USER")
                 .antMatchers("/admin_panel").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/user_panel", true)
+                .defaultSuccessUrl("/start_panel", true)
                 .and().csrf().disable();
 
 

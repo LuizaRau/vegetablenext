@@ -11,9 +11,10 @@
 
 <p>Nasza oferta </p>
 <p th:text="${session.sesuserid}"> </p>
-<a th:href="@{/cart/{id}(id=${session.orderid})}"> Zobacz koszyk </a>
+
 
 <p>Zamów produkty</p>
+<a th:href="@{/user_panel/}"> Złóż zamówienie </a>
 <table>
     <tr>
         <th> </th>
@@ -29,7 +30,7 @@
         <td th:text="${product.description}">Korzeń</td>
         <td  th:text="${product.jm}">Kg</td>
         <td th:text="${product.price}">3.0</td>
-        <td><a th:href="@{/orderadd/{id}(id=${product.id})}"> Dodaj </a></td>
+        <td></td>
 
 
 

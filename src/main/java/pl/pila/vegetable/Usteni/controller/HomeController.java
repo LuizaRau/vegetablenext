@@ -14,9 +14,11 @@ import pl.pila.vegetable.Usteni.repository.UserRepository;
 import pl.pila.vegetable.Usteni.services.SignUpService;
 
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -40,19 +42,12 @@ public class HomeController {
     }
 
     @GetMapping({"/nic","/ddd"})
-
     public String home(Model model){
-        Integer orderid = 0;
+
         Users user = userRepository.findById(1).get();
         model.addAttribute("userses",user);
-        List<Order> orders = (List<Order>) orderRepository.findAll();
 
-        for (Order val: orders
-                ) {
-            orderid = val.getId();
-        }
-        orderid = orderid+1;
-        model.addAttribute("orderid",orderid);
+
 
 
 
@@ -62,8 +57,11 @@ public class HomeController {
         return "user_panel";
     }
 
-    @RequestMapping("/user_panel")
+    @RequestMapping("/start_panel")
     public String listProducts(Model model,Principal principal){
+        Order order = new Order();
+
+        Integer orderid = 0;
 
         Iterable<Product> products= productRepository.findAll();
         model.addAttribute("products",products);
@@ -75,8 +73,20 @@ public class HomeController {
         Users user = usersOptional.get();
         Integer userId = user.getId();
         model.addAttribute("sesuserid",userId);
+        List<Order> orders = (List<Order>) orderRepository.findAll();
+        if (!(orders==null)) {
+            for (Order val : orders
+            ) {
+                if (val.getId()>orderid)
+                    orderid = val.getId();
+            }
+        }
+        orderid = orderid+1;
+        model.addAttribute("orderid",orderid);
+        order.setUser(user);
+        orderRepository.save(order);
 
-        return "user_panel";
+        return "redirect:/user_panel";
 
     }
 
@@ -84,6 +94,17 @@ public class HomeController {
     @RequestMapping({"/admin_panel"})
     public String adminPanel(){
         return "admin_panel";
+    }
+    @RequestMapping("/user_panel")
+    public String listProducts(Model model, HttpSession ses){
+
+        Iterable<Product> products= productRepository.findAll();
+
+        model.addAttribute("products",products);
+
+
+        return "user_panel";
+
     }
 
 
