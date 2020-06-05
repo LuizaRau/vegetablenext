@@ -125,6 +125,7 @@ public class HomeController {
         model.addAttribute("products",products);
 
 
+
         return "index";
 
     }

@@ -1,5 +1,7 @@
 package pl.pila.vegetable.Usteni.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 

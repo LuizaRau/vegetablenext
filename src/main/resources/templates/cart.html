@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User panel</title>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+</head>
+<body>
+<div th:insert="menu.html:: div"></div>
+<p >U Steni >>>> Warzywa i rozsada</p>
+
+<p>KOSZYK</p>
+<p th:text="${session.sesuserid}"> </p>
+
+
+<p>Zamówione produkty</p>
+<h3 th:text="'Całkowity koszt: '+ ${total}+' zł'">dff </h3>
+<table>
+    <tr>
+        <th> </th>
+        <th>NAZWA</th>
+        <th>OPIS</th>
+        <th>ILOŚĆ</th>
+        <th>JM</th>
+        <th>CENA</th>
+        <th>RAZEM </th
+        >
+    </tr>
+    <tr th:each="cartItem: ${cartA}">
+        <td><img alt="Zdjęcie" th:src="${'/images/'+ cartItem.getProduct().imagelink}" width="120"> </td>
+        <td th:text="${cartItem.getProduct().name}">Pietruszka</td>
+        <td th:text="${cartItem.getProduct().description}">Korzeń</td>
+        <td th:text="${cartItem.quantity}">3.0</td>
+        <td  th:text="${cartItem.getProduct().jm}">Kg</td>
+        <td th:text="${cartItem.getProduct().price} +' zł'">3.0</td>
+        <td th:text="${cartItem.getSum()} + ' zł' ">3.0</td>
+        <!--<td><a th:href="@{/orderadd/{id}(id=${product.id})}"> Dodaj </a></td>-->
+    </tr>
+
+</table>
+
+
+</body>
+</html>

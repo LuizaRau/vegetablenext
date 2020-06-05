@@ -9,6 +9,7 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private double quantity;
+    private double sum;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -25,7 +26,7 @@ public class OrderProduct {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,5 +52,17 @@ public class OrderProduct {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+
+
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+
+        this.sum = sum;
     }
 }

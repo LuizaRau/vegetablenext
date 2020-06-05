@@ -1,6 +1,8 @@
 package pl.pila.vegetable.Usteni.controller;
 
+import lombok.val;
 import org.springframework.data.relational.core.sql.In;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -83,25 +85,63 @@ public class OrderController {
         Order order = orderRepository.findById(1).get();
 
         List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(1);
+
+        Product p = productRepository.findById(product.getId()).get();
+
+
         for (OrderProduct val:opList
              ) {
             if (val.getProduct().getId()==product.getId()){
                 Integer idOrderProduct = val.getId();
                 orderProductRepository.deleteById(idOrderProduct);
+                Integer idProduct = product.getId();
+                System.out.println(idProduct);
+                model.addAttribute("op",op);
 
 
-                return "temp1";
+
+
+
+                return "redirect:/orderadd1/"+idProduct;
             }
 
         }
 
+        double sum = op.getQuantity()*p.getPrice();
+        op.setSum(sum);
         op.setProduct(product);
         op.setOrder(order);
         orderProductRepository.save(op);
 
-        return "user_panel";
+        return "redirect:/user_panel";
     }
+    @GetMapping("/orderadd1/{id}")
+    public String formAddProductToOrder1(Model model, @PathVariable Integer id){
+        Product product;
+        product = productRepository.findById(id).get();
+        OrderProduct op = new OrderProduct();
+        model.addAttribute("product",product);
+        model.addAttribute("op",op);
 
+        return "/order/add1";
+
+    }
+    @GetMapping("/cart")
+    public String showCart(Model model){
+        double total = 0.0;
+        List<OrderProduct> opList = orderProductRepository.findOrderProductsByOrder_Id(1);
+        model.addAttribute("cartA",opList);
+        for (OrderProduct val:opList
+        ) {
+             total = total + val.getSum();
+
+            }
+        model.addAttribute("total",total);
+
+
+
+        return "cart";
+    }
 
 
 
