@@ -86,7 +86,7 @@ public class HomeController {
         order.setUser(user);
         orderRepository.save(order);
 
-        return "redirect:/user_panel";
+        return "user_panel";
 
     }
 

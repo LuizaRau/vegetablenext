@@ -82,6 +82,9 @@ public class OrderController {
     @PostMapping("/orderadd")
         public String saveProductToOrder(@ModelAttribute OrderProduct op,@ModelAttribute Product product, Model model,
                                         HttpSession ses){
+        Iterable<Product> products= productRepository.findAll();
+
+        model.addAttribute("products",products);
 
         Order order = new Order();
         Integer orderId = (Integer) ses.getAttribute("orderid");
@@ -115,7 +118,7 @@ public class OrderController {
         op.setOrder(order);
         orderProductRepository.save(op);
 
-        return "redirect:/user_panel";
+        return "user_panel";
     }
 
 

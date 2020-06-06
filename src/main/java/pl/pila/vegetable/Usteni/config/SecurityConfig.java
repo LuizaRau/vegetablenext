@@ -81,6 +81,6 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception{
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","static/cart/css/**");
     }
 }
