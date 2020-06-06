@@ -67,14 +67,16 @@ public class ProductController {
 
     }
     @PostMapping("/add")
-    public String saveProduct(@ModelAttribute Product product){
+    public String saveProduct(@ModelAttribute Product product,Model model){
+        Iterable<Product> products= productRepository.findAll();
 
+        model.addAttribute("products",products);
 
         productRepository.save(product);
 
 
 
-        return "redirect:listp";
+        return "user_panel";
 
     }
 
